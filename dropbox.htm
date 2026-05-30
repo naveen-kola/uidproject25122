@@ -1,0 +1,2869 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dropbox.com</title>
+
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Dropbox_Icon.svg/32px-Dropbox_Icon.svg.png">
+
+    <style>
+        body {
+            margin: 0;
+            padding-top: 70px;
+            font-family: Arial, sans-serif;
+            background: #f7f5f2;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background-color: white; 
+            border-bottom: 1px solid #ddd;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .left img {
+            width: 35px;
+        }
+
+        .left h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .right a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+
+        .btn {
+            background: #0061ff;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 60px;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            margin: 20px 0;
+        }
+
+        .hero button {
+            background: #0061ff;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .hero img {
+            width: 550px;  
+            border-radius: 15px;
+        }
+
+        /*  NEW TEXT STYLE (same look as image) */
+        .logo-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        /* LOGO SLIDER */
+        .logo-slider {
+            overflow: hidden;
+            background: #f7f5f2;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .logo-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 80s linear infinite;
+        }
+
+        .logo-track img {
+            height: 150px;
+            margin: 0 50px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .logo-slider:hover .logo-track {
+            animation-play-state: paused;
+        }
+
+        /*  BUTTON BELOW */
+        .control-btn {
+            margin-top: 30px;
+            background: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        /* SCROLL ANIMATION (added only) */
+.find-section .find-btn,
+.find-section h1,
+.find-section p,
+.find-section .find-cta {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+}
+
+/* ACTIVE STATE */
+.find-section.show .find-btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+.find-section h1 {
+    font-size: 50px;   /* bigger heading */
+    margin: 20px 0;
+}
+
+.find-section p {
+    font-size: 16px;   /* bigger paragraph */
+    max-width: 750px;
+}
+
+.find-section.show h1 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+.find-section.show p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1s;
+}
+
+.find-section.show .find-cta {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.4s;
+}
+.find-section .find-cta {
+    margin-top: 40px;
+    padding: 20px 45px;
+
+    border-radius: 16px;   /*  rectangle with curved edges */
+    border: 2px solid black;
+    background: transparent;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+/* PERFECT CENTER */
+.find-section {
+    text-align: center;
+    padding: 120px 20px;
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.find-section .find-btn,
+.find-section h1,
+.find-section p,
+.find-section .find-cta {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.find-section.show .find-btn { transition-delay: 0.2s; opacity:1; transform:translateY(0);}
+.find-section.show h1 { transition-delay: 0.5s; opacity:1; transform:translateY(0);}
+.find-section.show p { transition-delay: 0.8s; opacity:1; transform:translateY(0);}
+.find-section.show .find-cta { transition-delay: 1.1s; opacity:1; transform:translateY(0);}
+/* IMAGE FRAME */
+.image-frame {
+    width: 320px;
+    height: 520px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    margin-left: 40px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.15),
+        0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* IMAGE */
+.image-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+/* VIDEO FRAME */
+.video-frame {
+    width: 420px;
+    height: 520px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    border-radius: 18px;
+
+    margin-left: 40px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.15),
+        0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* VIDEO */
+.video-frame video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+/* MAIN SIDE BY SIDE SECTION */
+.media-section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:80px 90px;
+
+    gap:120px;
+}
+
+/* LEFT IMAGE STACK */
+.image-stack{
+    position:relative;
+
+    width:620px;
+    height:620px;
+}
+
+/* BACK IMAGE */
+.image-back{
+    position:absolute;
+
+    width:460px;
+    height:620px;
+
+    left:0;
+    top:0;
+
+    border-radius:0px;
+
+    overflow:hidden;
+}
+
+/* FRONT IMAGE */
+.image-front{
+    position:absolute;
+
+    width:460px;
+    height:620px;
+
+    left:210px;
+    top:50px;
+
+    z-index:2;
+
+    overflow:hidden;
+}
+
+/* IMAGE STYLE */
+.image-back img,
+.image-front img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.video-frame{
+    width:720px;
+    height:450px;
+
+    background:none;
+    border:none;
+    box-shadow:none;
+    border-radius:0;
+
+    overflow:visible;
+}
+
+.video-frame video{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    background:transparent;
+}
+/* SMOOTH TRANSITION FOR WHOLE PAGE */
+html{
+    scroll-behavior:smooth;
+}
+
+/* SECTION ANIMATION */
+.find-section,
+.logo-slider,
+.hero{
+    opacity:0;
+    transform:translateY(80px);
+
+    animation:fadeUp 1.2s ease forwards;
+}
+
+/* DIFFERENT DELAYS */
+.hero{
+    animation-delay:0.2s;
+}
+
+.logo-slider{
+    animation-delay:0.5s;
+}
+
+.find-section{
+    animation-delay:0.8s;
+}
+
+.media-section{
+    animation-delay:1.1s;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(80px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.media-section{
+    transition: transform 0.1s linear;
+    will-change: transform;
+}
+/* EXTRA SPACE FOR SCROLL EFFECT */
+body{
+    min-height:400vh;
+}
+.image-stack,
+.video-frame{
+    transition: transform 0.25s ease-out;
+    will-change: transform;
+}
+/* SECTION */
+.organise-section {
+    text-align: center;
+
+    padding: 140px 20px;
+
+    background: #f7f5f2;
+
+    overflow: hidden;
+}
+
+/* HIDDEN STATE */
+.organise-tag,
+.organise-section h1,
+.organise-section p,
+.organise-buttons {
+    opacity: 0;
+
+    transform: translateY(70px);
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* SHOW ANIMATION */
+.organise-section.show .organise-tag {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition-delay: 0.2s;
+}
+
+.organise-section.show h1 {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition-delay: 0.5s;
+}
+
+.organise-section.show p {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition-delay: 0.8s;
+}
+
+.organise-section.show .organise-buttons {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition-delay: 1.1s;
+}
+
+/* TOP TAG */
+.organise-tag {
+    display: inline-block;
+
+    background: #ece7e2;
+
+    padding: 12px 24px;
+
+    border-radius: 40px;
+
+    font-size: 22px;
+
+    margin-bottom: 40px;
+}
+
+/* TITLE */
+.organise-section h1 {
+    font-size: 36px;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    line-height: 1.1;
+
+    color: #1e1919;
+}
+
+/* PARAGRAPH */
+.organise-section p {
+    font-size: 16px;
+
+    max-width: 1200px;
+
+    margin: 40px auto;
+
+    color: #6d655f;
+
+    line-height: 1.5;
+}
+
+/* BUTTON AREA */
+.organise-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 25px;
+
+    margin-top: 30px;
+}
+
+/* MAIN BUTTON */
+.learn-btn {
+    padding: 16px 28px;
+
+    border-radius: 30px;
+
+    border: 2px solid #1e1919;
+
+    background: transparent;
+
+    font-size: 8px; 
+
+    font-weight: 300;
+
+    cursor: pointer;
+
+    transition: all 0.4s ease;
+}
+
+.learn-btn:hover {
+    background: #1e1919;
+    color: white;
+}
+
+/* LINK */
+.organise-buttons a {
+    font-size: 17px;
+
+    color: #1e1919;
+
+    font-weight: 150;
+
+    text-decoration-thickness: 1.5px;
+}
+/* MEDIA SECTION */
+.media-section {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 120px;
+
+    padding: 120px 80px;
+
+    background: #f7f5f2;
+}
+
+/* LEFT CARD */
+.media-card {
+    width: 520px;
+
+    background: white;
+
+    padding: 28px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08),
+        0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* IMAGE / VIDEO SIDE */
+.media-image,
+.media-video {
+    width: 750px;
+    height: 520px;
+
+    overflow: hidden;
+}
+
+/* IMAGE */
+.media-image img,
+.media-video video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #f5f3ef;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   SHARE SECTION
+========================= */
+
+.share-section{
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 120px 20px;
+    background: #f5f3ef;
+
+    /* SCROLL ANIMATION */
+    opacity: 0;
+    transform: translateY(120px);
+    transition: all 1.2s ease;
+}
+
+.share-section.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.share-container{
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* =========================
+   LINE BY LINE ANIMATION
+========================= */
+
+.share-badge,
+.share-section h1,
+.share-section p,
+.share-buttons{
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 1s ease;
+}
+
+.share-section.show .share-badge{
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.share-section.show h1{
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+.share-section.show p{
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+}
+
+.share-section.show .share-buttons{
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.1s;
+}
+
+/* =========================
+   TOP BADGE
+========================= */
+
+.share-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    background: #ebe7e1;
+    color: #6d655d;
+
+    padding: 14px 28px;
+    border-radius: 50px;
+
+    font-size: 22px;
+    margin-bottom: 45px;
+}
+
+.share-icon{
+    font-size: 24px;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.share-section h1{
+    font-size: 72px;
+    color: #403b39;
+    margin-bottom: 35px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+/* =========================
+   PARAGRAPH
+========================= */
+
+.share-section p{
+    max-width: 1100px;
+    margin: auto;
+
+    font-size: 34px;
+    line-height: 1.6;
+    color: #8b847d;
+
+    margin-bottom: 80px;
+}
+
+/* =========================
+   BUTTON AREA
+========================= */
+
+.share-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    flex-wrap: wrap;
+}
+
+/* =========================
+   LEARN BUTTON
+========================= */
+
+.learn-btn{
+    background: transparent;
+    border: 4px solid #403b39;
+
+    padding: 28px 65px;
+    border-radius: 30px;
+
+    font-size: 34px;
+    font-weight: 600;
+    color: #403b39;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    transition: 0.4s ease;
+}
+
+.learn-btn:hover{
+    background: #403b39;
+    color: white;
+    transform: translateY(-6px);
+}
+
+/* =========================
+   TRY LINK
+========================= */
+
+.try-link{
+    font-size: 36px;
+    color: #403b39;
+    text-decoration: underline;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    transition: 0.3s ease;
+}
+
+.try-link:hover{
+    transform: translateX(10px);
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .share-section h1{
+        font-size: 46px;
+    }
+
+    .share-section p{
+        font-size: 22px;
+    }
+
+    .learn-btn{
+        font-size: 24px;
+        padding: 20px 40px;
+    }
+
+    .try-link{
+        font-size: 24px;
+    }
+
+    .share-buttons{
+        gap: 35px;
+    }
+}
+/* =========================
+   LAST IMAGE + VIDEO
+========================= */
+
+.last-media-section{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:60px;
+
+    padding:120px 60px;
+
+    background:#f5f3ef;
+}
+
+/* LEFT IMAGE */
+
+.last-image{
+    width:45%;
+}
+
+.last-image img{
+    width:100%;
+    display:block;
+    object-fit:cover;
+}
+
+/* RIGHT VIDEO */
+
+.last-video{
+    width:55%;
+}
+
+.last-video video{
+    width:100%;
+    display:block;
+    object-fit:cover;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:900px){
+
+    .last-media-section{
+        flex-direction:column;
+    }
+
+    .last-image,
+    .last-video{
+        width:100%;
+    }
+}
+/* =========================
+   FULL BLACK DROPBOX STYLE
+========================= */
+
+.security-section{
+
+    width:100%;
+    min-height:100vh;
+
+    background:#0f1115;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:0;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+/* CARD */
+
+.security-card{
+
+    width:100%;
+    min-height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #23262d,
+        #111318
+    );
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:120px 70px;
+
+    color:white;
+
+    /* SMOOTH TRANSITION */
+
+    opacity:0;
+
+    transform:translateY(70px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+/* SHOW */
+
+.security-section.show .security-card{
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* ICON */
+
+.security-icon{
+
+    font-size:85px;
+
+    margin-bottom:35px;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:all 0.8s ease;
+}
+
+.security-section.show .security-icon{
+
+    opacity:1;
+    transform:translateY(0);
+
+    transition-delay:0.2s;
+}
+
+/* TITLE */
+
+.security-card h1{
+
+    font-size:78px;
+
+    line-height:1.1;
+
+    margin-bottom:35px;
+
+    max-width:1200px;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:all 0.8s ease;
+}
+
+.security-section.show h1{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition-delay:0.5s;
+}
+
+/* PARAGRAPH */
+
+.security-card p{
+
+    max-width:1200px;
+
+    font-size:32px;
+
+    line-height:1.5;
+
+    color:#a6a6ad;
+
+    margin-bottom:70px;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:all 0.8s ease;
+}
+
+.security-section.show p{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition-delay:0.8s;
+}
+
+/* BUTTON AREA */
+
+.security-buttons{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:60px;
+
+    flex-wrap:wrap;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:all 0.8s ease;
+}
+
+.security-section.show .security-buttons{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition-delay:1.1s;
+}
+
+/* BUTTON */
+
+.security-btn{
+
+    background:transparent;
+
+    border:3px solid white;
+
+    color:white;
+
+    padding:24px 55px;
+
+    border-radius:24px;
+
+    font-size:28px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+}
+
+.security-btn:hover{
+
+    background:white;
+
+    color:black;
+}
+
+/* LINK */
+
+.security-link{
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:600;
+
+    text-decoration:underline;
+}
+
+/* ENTIRE WEBSITE BLACK BELOW */
+
+/* =========================
+   OVERLAP IMAGE SECTION
+========================= */
+
+.overlap-section{
+
+    width:100%;
+    min-height:100vh;
+
+    background:#0f1115;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:120px 0;
+
+    overflow:hidden;
+}
+
+/* MAIN WRAPPER */
+
+.overlap-wrapper{
+
+    position:relative;
+
+    width:1450px;
+    height:850px;
+}
+
+/* LEFT SMALL IMAGE */
+
+.left-image{
+
+    position:absolute;
+
+    left:40px;
+    top:280px;
+
+    width:260px;
+    height:260px;
+
+    z-index:1;
+
+    overflow:hidden;
+}
+
+.left-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* BIG CENTER IMAGE */
+
+.center-image{
+
+    position:absolute;
+
+    left:230px;
+    top:0;
+
+    width:620px;
+    height:820px;
+
+    z-index:2;
+
+    overflow:hidden;
+}
+
+.center-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* WHITE POPUP CARD */
+
+.share-popup{
+
+    position:absolute;
+
+    right:0;
+    top:140px;
+
+    width:760px;
+    height:560px;
+
+    background:white;
+
+    border-radius:30px;
+
+    z-index:3;
+
+    padding:45px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.3);
+}
+
+/* TITLE */
+
+.share-popup h2{
+
+    font-size:52px;
+
+    color:black;
+
+    margin-bottom:50px;
+}
+
+/* ROWS */
+
+.popup-row{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:24px 0;
+
+    border-bottom:1px solid #ddd;
+
+    color:black;
+
+    font-size:24px;
+}
+
+.popup-right{
+
+    font-weight:600;
+}
+/* =========================
+   TESTIMONIAL SECTION
+========================= */
+
+.testimonial-section{
+
+    width:100%;
+
+    background:#0f1115;
+
+    overflow:hidden;
+
+    padding:90px 0;
+}
+
+/* DRAG AREA */
+
+.testimonial-wrapper{
+
+    overflow:hidden;
+
+    cursor:grab;
+}
+
+.testimonial-wrapper:active{
+
+    cursor:grabbing;
+}
+
+/* SLIDER */
+
+.testimonial-slider{
+
+    display:flex;
+
+    gap:28px;
+
+    padding-left:90px;
+
+    width:max-content;
+
+    transition:0.05s linear;
+}
+
+/* CARD */
+
+.testimonial-card{
+
+    width:760px;
+
+    height:360px;
+
+    background:linear-gradient(
+        90deg,
+        #1a1d22,
+        #111318
+    );
+
+    border-radius:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:28px;
+
+    gap:30px;
+
+    flex-shrink:0;
+}
+
+/* IMAGE */
+
+.testimonial-image{
+
+    width:270px;
+    height:300px;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    flex-shrink:0;
+}
+
+.testimonial-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* CONTENT */
+
+.testimonial-content{
+
+    color:white;
+
+    flex:1;
+}
+
+/* TAG */
+
+.testimonial-tag{
+
+    color:#ff3d71;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+}
+
+/* TITLE */
+
+.testimonial-content h1{
+
+    font-size:30px;
+
+    line-height:1.1;
+
+    margin-bottom:22px;
+
+    max-width:380px;
+}
+
+/* PARAGRAPH */
+
+.testimonial-content p{
+
+    font-size:18px;
+
+    line-height:1.5;
+
+    color:#a7a7ad;
+
+    margin-bottom:45px;
+
+    max-width:420px;
+}
+
+/* LINK */
+
+.testimonial-link{
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    text-decoration:underline;
+}
+/* REMOVE EXTRA EMPTY SPACE */
+
+.testimonial-section{
+
+    overflow:hidden;
+}
+
+.testimonial-wrapper{
+
+    width:100%;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+/* FIX SLIDER WIDTH */
+
+.testimonial-slider{
+
+    width:fit-content;
+}
+
+/* LAST CARD PERFECT END */
+
+.testimonial-card:last-child{
+
+    margin-right:90px;
+}
+/* =========================
+   INDUSTRY SECTION
+========================= */
+
+.industry-section{
+
+    background:white;
+
+    padding:80px 40px 120px;
+}
+
+/* TITLE */
+
+.industry-title{
+
+    text-align:center;
+
+    font-size:52px;
+
+    font-weight:500;
+
+    color:#1e1919;
+
+    margin-bottom:55px;
+
+    letter-spacing:-1px;
+}
+
+/* GRID */
+
+.industry-grid{
+
+    max-width:1580px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+}
+
+/* CARD */
+
+.industry-card{
+
+    background:#ece7e2;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:stretch;
+
+    text-decoration:none;
+
+    height:245px;
+
+    transition:0.25s ease;
+}
+
+.industry-card:hover{
+
+    transform:translateY(-3px);
+}
+
+/* IMAGE */
+
+.industry-card img{
+
+    width:235px;
+
+    height:100%;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+}
+
+/* CONTENT */
+
+.industry-content{
+
+    padding:28px 34px;
+}
+
+/* HEADING */
+
+.industry-content h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1e1919;
+
+    margin-bottom:18px;
+}
+
+/* PARAGRAPH */
+
+.industry-content p{
+
+    font-size:16px;
+
+    line-height:1.55;
+
+    color:#6f6862;
+
+    max-width:390px;
+
+    margin-bottom:28px;
+}
+
+/* LINK */
+
+.industry-content span{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#1e1919;
+
+    text-decoration:underline;
+}
+/* =========================
+   DISCOVER SECTION
+========================= */
+
+.discover-section{
+
+    background:#f5f3ef;
+
+    padding:90px 55px 120px;
+}
+
+/* TITLE */
+
+.discover-title{
+
+    text-align:center;
+
+    font-family:Inter,sans-serif;
+
+    font-size:64px;
+
+    font-weight:300;
+
+    letter-spacing:-3px;
+
+    color:#1e1919;
+
+    margin-bottom:70px;
+}
+
+/* GRID */
+
+.discover-grid{
+
+    max-width:1650px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr 1fr;
+
+    gap:28px;
+}
+
+/* CARD */
+
+.discover-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:760px;   /* exact height style */
+}
+
+/* IMAGE */
+
+.discover-card img{
+
+    width:100%;
+
+    height:275px;   /* exact image height */
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* CONTENT */
+
+.discover-content{
+
+    padding:32px 34px 38px;
+}
+
+/* SMALL TEXT */
+
+.discover-content h5{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#6f6862;
+
+    margin-bottom:20px;
+}
+
+/* TITLE */
+
+.discover-content h2{
+
+    font-size:26px;
+
+    line-height:1.12;
+
+    font-weight:600;
+
+    letter-spacing:-1px;
+
+    color:#1e1919;
+
+    margin-bottom:28px;
+}
+
+/* PARAGRAPH */
+
+.discover-content p{
+
+    font-size:16px;
+
+    line-height:1.65;
+
+    color:#6f6862;
+
+    margin-bottom:42px;
+}
+
+/* LINK */
+
+.discover-content span{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#1e1919;
+
+    text-decoration:underline;
+}
+/* =========================
+   VIEW MORE SECTION
+========================= */
+
+.view-more-section{
+
+    background:#f5f3ef;
+
+    padding:90px 0 120px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+/* LINK */
+
+.view-more-link{
+
+    font-family:Inter,sans-serif;
+
+    font-size:22px;
+
+    font-weight:400;
+
+    color:#0061ff;
+
+    text-decoration:none;
+
+    transition:0.2s ease;
+}
+
+.view-more-link:hover{
+
+    text-decoration:underline;
+}
+/* =========================
+   FOOTER
+========================= */
+
+.footer-section{
+
+    background:#000;
+
+    padding:65px 58px 80px;
+
+    color:white;
+}
+
+/* GRID */
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3, 1fr);
+
+    column-gap:170px;
+
+    row-gap:95px;
+
+    max-width:1750px;
+}
+
+/* COLUMN */
+
+.footer-column{
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+/* TITLE */
+
+.footer-column h2{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    margin-bottom:34px;
+
+    letter-spacing:-0.3px;
+}
+
+/* LINKS */
+
+.footer-column a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    font-weight:400;
+
+    line-height:3;
+}
+
+.footer-column a:hover{
+
+    text-decoration:underline;
+}
+
+/* SOCIAL */
+
+.footer-social{
+
+    display:flex;
+
+    gap:34px;
+
+    margin-top:95px;
+
+    font-size:38px;
+}
+
+/* LINE */
+
+.footer-line{
+
+    width:198px;
+
+    height:1px;
+
+    background:#555;
+
+    margin-top:42px;
+}
+
+/* LANGUAGE */
+
+.footer-language{
+
+    margin-top:42px;
+
+    font-size:18px;
+
+    font-weight:400;
+}
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Dropbox_Icon.svg">
+        <h2>Dropbox</h2>
+    </div>
+
+    <div class="right">
+
+    <span onclick="languageBtn()"
+          style="cursor:pointer;">
+          🌐
+    </span>
+
+    <a href="#"
+       onclick="signupPage()">
+       Sign up
+    </a>
+
+    <a href="#"
+       onclick="loginPage()">
+       Log in
+    </a>
+
+    <a href="#"
+       class="btn"
+       onclick="getStartedPage()">
+       Get started
+    </a>
+
+    <span onclick="menuOpen()"
+          style="cursor:pointer;
+                 font-size:22px;">
+          ☰
+    </span>
+
+</div>
+</nav>
+
+<div class="hero">
+    <div class="hero-text">
+        <h1>Get to work, with a lot less work</h1>
+        <p>Dropbox delivers tools that help you collaborate with ease, move work forward faster and keep it all safe.</p>
+        <button onclick="start()">Try Dropbox free →</button>
+    </div>
+
+    <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/en-us/index/desktop-mobile-fss-1440x1440.png?id=fea1b68e-2146-47f2-9e61-a78f619488b8&width=1024&output_type=webp">
+</div>
+
+<!--  LOGO SECTION -->
+<div class="logo-slider">
+
+    <!--  ADDED TEXT -->
+    <div class="logo-title">
+        Join the over 700 million registered users who trust Dropbox
+    </div>
+
+    <div class="logo-track" id="logoTrack">
+        <!-- (same images, unchanged) -->
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Katz.svg?id=a8e36a78-e35c-4112-89ca-3073a30903fc">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Zoom.svg?id=5ca8c138-e952-4bd5-9af8-bccdab185020">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Lincoln.svg?id=1e36a95f-269c-4084-b1a4-e6f87786de8f">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/McLaren.svg?id=8fe1da6b-6280-4343-b1dc-590aec2f1da6">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Crunch.svg?id=463e5d97-246e-4168-9fa0-f9411c7ab8be">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Cirque.svg?id=450142e8-a069-4fb4-a76e-84acf4291106">
+
+        <!-- duplicate -->
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Katz.svg?id=a8e36a78-e35c-4112-89ca-3073a30903fc">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Zoom.svg?id=5ca8c138-e952-4bd5-9af8-bccdab185020">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Lincoln.svg?id=1e36a95f-269c-4084-b1a4-e6f87786de8f">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/McLaren.svg?id=8fe1da6b-6280-4343-b1dc-590aec2f1da6">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Crunch.svg?id=463e5d97-246e-4168-9fa0-f9411c7ab8be">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/icons/home-pg-logos/Cirque.svg?id=450142e8-a069-4fb4-a76e-84acf4291106">
+    </div>
+
+    <!--  BUTTON BELOW -->`
+    <button class="control-btn" onclick="toggleAnimation()">⏸</button>
+
+</div>
+<!-- FIND SECTION (added only) -->
+<div class="find-section">
+    <div class="find-btn">🔍 Find</div>
+
+    <h1>Find it fast, every time</h1>
+
+    <p>
+        Get to the right file, fact or message when you need it,
+        so you spend less time searching and more time working.
+    </p>
+
+    <button class="find-cta">Try Dropbox free →</button>
+</div>
+<!-- IMAGE + VIDEO SECTION -->
+<div class="media-section">
+
+    <!-- LEFT SIDE IMAGES -->
+    <div class="image-stack">
+
+        <div class="image-back">
+            <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/en-us/index/october-2025-launch/feature-plank-find/customerartifact-fashion-photo-1080x1080.png?id=ba7d6349-6e09-4201-929f-377e7b64e513&width=828&output_type=webp">
+        </div>
+
+        
+
+    </div>
+
+    <!-- RIGHT SIDE VIDEO -->
+    <div class="video-frame">
+
+        <video autoplay muted loop playsinline>
+            <source src="dropbox-home-find-ui-transparent-1024x640-v08-en_GB.webm" type="video/mp4">
+        </video>
+
+    </div>
+
+</div>
+<div class="organise-section">
+
+    <div class="organise-tag">
+        ⬚⬚ Organise
+    </div>
+
+    <h1>Everything in order, everyone aligned</h1>
+
+    <p>
+        Keep every version current and easy to manage.
+        With synced team folders and previews for 175+ file
+        types, your content stays organised and accessible.
+    </p>
+
+    <div class="organise-buttons">
+        <button class="learn-btn">Learn more →</button>
+
+        <a href="#">Try Dropbox free →</a>
+    </div>
+
+</div>
+<div class="media-section">
+
+    <!-- LEFT VIDEO -->
+    <div class="media-video">
+        <video autoplay muted loop playsinline>
+            <source src="dropbox2.webm" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="media-image">
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/en-us/index/october-2025-launch/feature-plank-organize/customerartifact-mclaren-photo-1080x1080.png?id=32b25317-f60d-4288-9cf5-0f69da2c4cf5&width=828&output_type=webp">
+    </div>
+
+</div>
+<!-- SHARE SECTION -->
+
+<section class="share-section">
+
+    <div class="share-container">
+
+        <!-- TOP BADGE -->
+        <div class="share-badge">
+            <span class="share-icon">⇪</span>
+            <span>Share</span>
+        </div>
+
+        <!-- HEADING -->
+        <h1>Send it safely, share it fast</h1>
+
+        <!-- PARAGRAPH -->
+        <p>
+            Share work instantly and securely with real-time syncing and
+            large file transfers, so teams stay connected and collaboration
+            stays seamless.
+        </p>
+
+        <!-- BUTTONS -->
+        <div class="share-buttons">
+
+            <button class="learn-btn">
+                Learn more →
+            </button>
+
+            <a href="#" class="try-link">
+                Try Dropbox free →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LAST IMAGE + VIDEO SECTION -->
+
+<div class="last-media-section">
+
+    <!-- LEFT IMAGE -->
+    <div class="last-image">
+
+        <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/en-us/index/october-2025-launch/feature-plank-share/customerartifact-share-photo-1080x1080.png?id=b33b60d8-9539-4dae-bfb1-b0c3e841d9ad&width=828&output_type=webp">
+
+    </div>
+
+    <!-- RIGHT VIDEO -->
+    <div class="last-video">
+
+        <video autoplay muted loop playsinline>
+            <source src="dropbox-home-share-ui-transparent-1024x640-v07-en_GB.webm" type="video/webm">
+        </video>
+
+    </div>
+
+</div>
+<!-- SECURITY SECTION -->
+
+<section class="security-section">
+
+    <div class="security-card">
+
+        <div class="security-icon">
+            🔒
+        </div>
+
+        <h1>
+            Security never comes second
+        </h1>
+
+        <p>
+            From industry-leading encryption and tamper-proof documents
+            to version history and recovery, Dropbox keeps your
+            intellectual property safe and never sells your data.
+        </p>
+
+        <div class="security-buttons">
+
+            <button class="security-btn">
+                Try Dropbox free →
+            </button>
+
+            <a href="#" class="security-link">
+                Learn more →
+            </a>
+
+        </div>
+
+    </div>
+    </section>
+    <!-- PLACE BELOW SECURITY SECTION -->
+
+<section class="overlap-section">
+
+    <div class="overlap-wrapper">
+
+        <!-- SMALL LEFT IMAGE -->
+
+        <div class="left-image">
+
+            <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/en-us/test/homepageredesign2024/security/hero/security-left-2.png?id=c2b49cbb-0530-4d59-83b0-a04e82bb6cd4&output_type=webp">
+
+        </div>
+
+        <!-- BIG CENTER IMAGE -->
+
+        <div class="center-image">
+
+            <img src="https://fjord.dropboxstatic.com/warp/conversion/dropbox/warp/en-us/test/homepageredesign2024/security/hero/security-left-3.png?id=add2f4d9-c3c9-4e43-ad3b-9dfbba483c43&output_type=webp">
+
+        </div>
+
+        <!-- RIGHT WHITE CARD -->
+
+        <div class="share-popup">
+
+            <h2>Reference Folder</h2>
+
+            <div class="popup-row">
+                <span>Bethany Frazier</span>
+                <span class="popup-right">Can edit</span>
+            </div>
+
+            <div class="popup-row">
+                <span>Kevin Deterick</span>
+                <span class="popup-right">Can edit</span>
+            </div>
+
+            <div class="popup-row">
+                <span>Brad Geller</span>
+                <span class="popup-right">Can edit</span>
+            </div>
+
+            <div class="popup-row">
+                <span>Bridget Peters</span>
+                <span class="popup-right">Can edit</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="testimonial-section">
+
+    <div class="testimonial-wrapper">
+
+        <div class="testimonial-slider">
+
+            <!-- CARD 1 -->
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-image">
+                    <img src="Screenshot 2026-05-19 140700.png">
+                </div>
+
+                <div class="testimonial-content">
+
+                    <div class="testimonial-tag">
+                        Testimonial
+                    </div>
+
+                    <h1>
+                        "The security of knowing our information is safe."
+                    </h1>
+
+                    <p>
+                        Customer Bryan Chandler reveals how his team uses
+                        Dropbox to organise and share files securely.
+                    </p>
+
+                    <a href="#" class="testimonial-link">
+                        Watch testimonial
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-image">
+                    <img src="Screenshot 2026-05-19 141352.png">
+                </div>
+
+                <div class="testimonial-content">
+
+                    <div class="testimonial-tag">
+                        Testimonial
+                    </div>
+
+                    <h1>
+                        "Seriously impressive security features"
+                    </h1>
+
+                    <p>
+                        Tech influencer Justin Tse discusses why he trusts
+                        Dropbox to keep his content safe.
+                    </p>
+
+                    <a href="#" class="testimonial-link">
+                        Watch testimonial
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-image">
+                    <img src="Screenshot 2026-05-19 141528.png">
+                </div>
+
+                <div class="testimonial-content">
+
+                    <div class="testimonial-tag">
+                        Webinar
+                    </div>
+
+                    <h1>
+                        "How do you enhance security and keep productivity reasonable?"
+                    </h1>
+
+                    <p>
+                        Your company's sharing content with collaborators all
+                        over the world. Are you in control?
+                    </p>
+
+                    <a href="#" class="testimonial-link">
+                        Watch webinar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- INDUSTRIES SECTION -->
+
+<section class="industry-section">
+
+    <h1 class="industry-title">
+        Dropbox empowers across industries
+    </h1>
+
+    <div class="industry-grid">
+
+        <!-- CARD 1 -->
+
+        <a href="https://www.dropbox.com/business/solutions/construction"
+           target="_blank"
+           class="industry-card">
+
+            <img src="Screenshot 2026-05-19 142550.png">
+
+            <div class="industry-content">
+
+                <h2>Construction</h2>
+
+                <p>
+                    With Dropbox for teams, you can store,
+                    access, preview, edit, and transfer
+                    CAD, BIM, PDF, and visual content files
+                    from anywhere.
+                </p>
+
+                <span>
+                    Learn more →
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- CARD 2 -->
+
+        <a href="https://www.dropbox.com/business/solutions/media"
+           target="_blank"
+           class="industry-card">
+
+            <img src="Screenshot 2026-05-19 142653.png">
+
+            <div class="industry-content">
+
+                <h2>Media</h2>
+
+                <p>
+                    Create a flexible media workspace
+                    that connects your teams, content,
+                    and tools together.
+                </p>
+
+                <span>
+                    Learn more →
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- CARD 3 -->
+
+        <a href="https://www.dropbox.com/business/solutions/technology"
+           target="_blank"
+           class="industry-card">
+
+            <img src="Screenshot 2026-05-19 142833.png">
+
+            <div class="industry-content">
+
+                <h2>Technology</h2>
+
+                <p>
+                    Product ideation to development,
+                    streamline technology workflows so you
+                    can focus on turning great ideas into
+                    products people love.
+                </p>
+
+                <span>
+                    Learn more →
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- CARD 4 -->
+
+        <a href="https://www.dropbox.com/business/solutions/professional-services"
+           target="_blank"
+           class="industry-card">
+
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="industry-content">
+
+                <h2>Professional services</h2>
+
+                <p>
+                    Make clients happier with easy
+                    collaboration, boosted productivity,
+                    and one organized place to get things done.
+                </p>
+
+                <span>
+                    Learn more →
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- CARD 5 -->
+
+        <a href="https://www.dropbox.com/business/solutions/manufacturing"
+           target="_blank"
+           class="industry-card">
+
+            <img src="c:\Users\krama\OneDrive\Pictures\Screenshots\Screenshot 2026-05-19 142941.png">
+
+            <div class="industry-content">
+
+                <h2>Manufacturing</h2>
+
+                <p>
+                    Design and engineering teams easily
+                    collaborate, managing complex reviews
+                    and sharing large files seamlessly.
+                </p>
+
+                <span>
+                    Learn more →
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- CARD 6 -->
+
+        <a href="https://www.dropbox.com/business/solutions/education"
+           target="_blank"
+           class="industry-card">
+
+            <img src="c:\Users\krama\OneDrive\Pictures\Screenshots\Screenshot 2026-05-19 143223.png">
+
+            <div class="industry-content">
+
+                <h2>Education</h2>
+
+                <p>
+                    Power student learning, faculty
+                    research, and staff operations on
+                    Dropbox Education’s secure cloud
+                    collaboration platform.
+                </p>
+
+                <span>
+                    Learn more →
+                </span>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+<!-- DISCOVER SECTION -->
+
+<section class="discover-section">
+
+    <h1 class="discover-title">
+        Discover, learn, thrive with Dropbox
+    </h1>
+
+    <div class="discover-grid">
+
+        <!-- CARD 1 -->
+
+        <a href="#"
+           class="discover-card">
+
+            <img src="c:\Users\krama\OneDrive\Pictures\Screenshots\Screenshot 2026-05-19 145729.png">
+
+            <div class="discover-content">
+
+                <h5>Article</h5>
+
+                <h2>
+                    Study: Here’s how many hours
+                    we lose to distraction—and how
+                    to get our focus back
+                </h2>
+
+                <p>
+                    For our study, Economist Impact
+                    included knowledge workers globally—
+                    and found that, no matter where people
+                    work, there’s a significant cost to lost
+                    focus around the world.
+                </p>
+
+                <span>
+                    Read article
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- CARD 2 -->
+
+        <a href="#"
+           class="discover-card">
+
+            <img src="c:\Users\krama\OneDrive\Pictures\Screenshots\Screenshot 2026-05-19 145822.png">
+
+            <div class="discover-content">
+
+                <h5>Article</h5>
+
+                <h2>
+                    Dropbox teams up with McLaren
+                    Racing as an Official Technology
+                    Partner of McLaren Formula 1 Team
+                </h2>
+
+                <p>
+                    Dropbox brings simplified sharing,
+                    collaboration, and organization to the
+                    McLaren Formula 1 Team.
+                </p>
+
+                <span>
+                    Read article
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- CARD 3 -->
+
+        <a href="#"
+           class="discover-card">
+
+            <img src="c:\Users\krama\OneDrive\Pictures\Screenshots\Screenshot 2026-05-19 145903.png">
+
+            <div class="discover-content">
+
+                <h5>Article</h5>
+
+                <h2>
+                    The best way to share photos
+                    with family and friends
+                </h2>
+
+                <p>
+                    Don’t lose precious photos. Save them
+                    and share them with loved ones—for free.
+                    Here’s an easy-to-follow guide to sharing
+                    and storing photos with Dropbox.
+                </p>
+
+                <span>
+                    Read article
+                </span>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+<!-- VIEW MORE -->
+
+<div class="view-more-section">
+
+    <a href="#" class="view-more-link">
+        View more resources
+    </a>
+
+</div>
+<!-- FOOTER -->
+
+<footer class="footer-section">
+
+    <div class="footer-grid">
+
+        <!-- COLUMN 1 -->
+
+        <div class="footer-column">
+
+            <h2>Dropbox</h2>
+
+            <a href="#">Desktop app</a>
+            <a href="#">Mobile app</a>
+            <a href="#">Integrations</a>
+            <a href="#">Features</a>
+            <a href="#">Solutions</a>
+            <a href="#">Security</a>
+            <a href="#">Early access</a>
+            <a href="#">Templates</a>
+            <a href="#">Free tools</a>
+
+        </div>
+
+        <!-- COLUMN 2 -->
+
+        <div class="footer-column">
+
+            <h2>Products</h2>
+
+            <a href="#">Plus</a>
+            <a href="#">Professional</a>
+            <a href="#">Business</a>
+            <a href="#">Enterprise</a>
+            <a href="#">Dash</a>
+            <a href="#">DocSend</a>
+            <a href="#">Dropbox Sign</a>
+            <a href="#">Reclaim.ai</a>
+            <a href="#">Dropbox Fax</a>
+            <a href="#">Plans</a>
+            <a href="#">Product updates</a>
+
+        </div>
+
+        <!-- COLUMN 3 -->
+
+        <div class="footer-column">
+
+            <h2>Features</h2>
+
+            <a href="#">Send large files</a>
+            <a href="#">Send long videos</a>
+            <a href="#">Cloud photo storage</a>
+            <a href="#">Secure file transfer</a>
+            <a href="#">Cloud backup</a>
+            <a href="#">Edit PDFs</a>
+            <a href="#">Electronic signatures</a>
+            <a href="#">Convert to PDF</a>
+
+        </div>
+
+        <!-- COLUMN 4 -->
+
+        <div class="footer-column">
+
+            <h2>Support</h2>
+
+            <a href="#">Help center</a>
+            <a href="#">Contact us</a>
+            <a href="#">Privacy & terms</a>
+            <a href="#">Cookie policy</a>
+            <a href="#">Cookies & CCPA preferences</a>
+            <a href="#">AI principles</a>
+            <a href="#">Sitemap</a>
+            <a href="#">Learning resources</a>
+
+        </div>
+
+        <!-- COLUMN 5 -->
+
+        <div class="footer-column">
+
+            <h2>Resources</h2>
+
+            <a href="#">Blog</a>
+            <a href="#">Events</a>
+            <a href="#">Customer stories</a>
+            <a href="#">Resources library</a>
+            <a href="#">Developers</a>
+            <a href="#">Community forums</a>
+            <a href="#">Referrals</a>
+            <a href="#">Reseller partners</a>
+            <a href="#">Integration partners</a>
+            <a href="#">Find a partner</a>
+
+        </div>
+
+        <!-- COLUMN 6 -->
+
+        <div class="footer-column">
+
+            <h2>Company</h2>
+
+            <a href="#">About us</a>
+            <a href="#">Jobs</a>
+            <a href="#">Investor relations</a>
+            <a href="#">Corporate responsibility</a>
+
+        </div>
+
+    </div>
+
+    <!-- SOCIAL -->
+
+    <div class="footer-social">
+
+        <span>𝕏</span>
+        <span>●</span>
+        <span>▶</span>
+
+    </div>
+
+    <!-- LINE -->
+
+    <div class="footer-line"></div>
+
+    <!-- LANGUAGE -->
+
+    <div class="footer-language">
+
+        🌐 English (United States) →
+
+    </div>
+
+</footer>
+
+
+<script>
+    
+function start() {
+    alert("Welcome to Dropbox!");
+}
+
+/* LOGO BUTTON */
+let isPaused = false;
+
+function toggleAnimation() {
+
+    const track = document.getElementById("logoTrack");
+
+    if (!isPaused) {
+        track.style.animationPlayState = "paused";
+    } else {
+        track.style.animationPlayState = "running";
+    }
+
+    isPaused = !isPaused;
+}
+
+/* FIND SECTION ANIMATION */
+const section = document.querySelector(".find-section");
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            section.classList.add("show");
+        } else {
+            section.classList.remove("show");
+        }
+
+    });
+
+}, {
+    threshold: 0.4
+});
+
+observer.observe(section);
+
+/* IMAGE + VIDEO MOVE EFFECT */
+
+/* SMOOTH HOVERING SCROLL EFFECT */
+
+const imageStack = document.querySelector(".image-stack");
+const videoFrame = document.querySelector(".video-frame");
+const mediaSection = document.querySelector(".media-section");
+
+window.addEventListener("scroll", () => {
+
+    const rect = mediaSection.getBoundingClientRect();
+
+    /* ONLY WHEN SECTION IS VISIBLE */
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+
+        /* HOW MUCH SECTION ENTERED SCREEN */
+        let visible = window.innerHeight - rect.top;
+
+        /* IMAGE SLOW FLOAT */
+        imageStack.style.transform =
+            `translateY(${visible * -0.08}px)`;
+
+        /* VIDEO FAST FLOAT */
+        videoFrame.style.transform =
+            `translateY(${visible * -0.18}px)`;
+            
+    }
+
+});
+// ORGANISE SECTION ANIMATION
+const organiseSection = document.querySelector(".organise-section");
+
+const organiseObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                organiseSection.classList.add("show");
+            } else {
+                organiseSection.classList.remove("show");
+            }
+
+        });
+    },
+    {
+        threshold: 0.35
+    }
+);
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+const shareSection = document.querySelector('.share-section');
+
+function revealSection(){
+
+    const sectionTop = shareSection.getBoundingClientRect().top;
+    const triggerPoint = window.innerHeight / 1.2;
+
+    if(sectionTop < triggerPoint){
+        shareSection.classList.add('show');
+    }
+}
+
+window.addEventListener('scroll', revealSection);
+
+revealSection();
+
+organiseObserver.observe(organiseSection);
+const securityMain =
+document.querySelector('.security-section');
+
+const securityMainObserver =
+new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            securityMain.classList.add('show');
+        }
+
+    });
+
+},{
+    threshold:0.2
+});
+
+securityMainObserver.observe(securityMain);
+
+const wrapper =
+document.querySelector('.testimonial-wrapper');
+
+const slider =
+document.querySelector('.testimonial-slider');
+
+let isDown = false;
+
+let startX;
+
+let currentTranslate = 0;
+
+let prevTranslate = 0;
+
+wrapper.addEventListener('mousedown',(e)=>{
+
+    isDown = true;
+
+    startX = e.pageX;
+});
+
+window.addEventListener('mouseup',()=>{
+
+    isDown = false;
+
+    prevTranslate = currentTranslate;
+});
+
+window.addEventListener('mousemove',(e)=>{
+
+    if(!isDown) return;
+
+    const move =
+    e.pageX - startX;
+
+    currentTranslate =
+    prevTranslate + move;
+
+    /* LIMIT LEFT */
+
+    const maxLeft = 0;
+
+    /* LIMIT RIGHT */
+
+    const maxRight =
+    -(slider.scrollWidth - wrapper.offsetWidth);
+
+    if(currentTranslate > maxLeft){
+
+        currentTranslate = maxLeft;
+    }
+
+    if(currentTranslate < maxRight){
+
+        currentTranslate = maxRight;
+    }
+
+    slider.style.transform =
+    `translateX(${currentTranslate}px)`;
+});
+</script>
+</body>
+</html>
